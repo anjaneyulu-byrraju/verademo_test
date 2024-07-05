@@ -1,13 +1,3 @@
-name: verademo
-
-on:
-   push:
-    branches:
-      - main
-   pull_request:
-    branches:
-      - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,14 +13,12 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
     - name: Build with Maven
-      run: |
-            cd app
-            mvn clean package
+      run: mvn clean package
 
     - uses: actions/upload-artifact@v4
       with:
         name: verademo.war
-        path: app/target/verademo.war
+        path: target/verademo.war
         
   pipeline_scan:
       needs: build
@@ -46,18 +34,14 @@ jobs:
             name: verademo.war
         - name: pipeline-scan action step
           id: pipelien-scan
-          uses: veracode/Veracode-pipeline-scan-action@esd-true
+          uses: veracode/Veracode-pipeline-scan-action@v1.0.12
           with:
             vid: ${{ secrets.VID }}
             vkey: ${{ secrets.VKEY }}
             file: "verademo.war" 
-            request_policy: "Veracode Recommended SCA Very Low"
+            request_policy: "VeraDemo Policy"
             debug: 1
             fail_build: false
-        - uses: actions/upload-artifact@v4
-          with:
-            name: Veracode Pipeline-Scan Results
-            path: results.json 
 
   veracode-fix:
     runs-on: ubuntu-latest
@@ -76,12 +60,11 @@ jobs:
         id: convert
         uses: Veracode/veracode-fix@main
         with:
-          inputFile: results.json
+          inputFile: filtered_results.json
           vid: ${{ secrets.VID }}
           vkey: ${{ secrets.VKEY }}
-          source_base_path_1: "com/:app/src/main/java/com/"
+          source_base_path_1: "com/:src/main/java/com/"
+          source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
           language: java
           prComment: true
-          cwe: '89,117'
-          DEBUG: true
-          fixType: batch
+          fixType: single
