@@ -76,12 +76,11 @@ jobs:
         id: convert
         uses: Veracode/veracode-fix@main
         with:
-          inputFile: results.json
+          inputFile: filtered_results.json
           vid: ${{ secrets.VID }}
           vkey: ${{ secrets.VKEY }}
-          source_base_path_1: "com/:app/src/main/java/com/"
+          source_base_path_1: "com/:src/main/java/com/"
+          source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
           language: java
           prComment: true
-          cwe: '89,117'
-          DEBUG: true
-          fixType: batch
+          fixType: single
