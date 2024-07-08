@@ -83,6 +83,6 @@ jobs:
           source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
           language: java
           prComment: true
-          cwe: '89,80'
+          cwe: '89,209'
           DEBUG: true
           fixType: batch
