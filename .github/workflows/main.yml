@@ -84,6 +84,5 @@ jobs:
           language: java
           prComment: true
           createPR: true
-          cwe: '89,80'
           DEBUG: true
           fixType: batch
