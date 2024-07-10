@@ -1,12 +1,8 @@
 name: verademo
-
 on:
-   push:
-    branches:
-      - main
    pull_request:
     branches:
-      - main
+      - Test2
 
 jobs:
   build:
@@ -80,9 +76,10 @@ jobs:
           vid: ${{ secrets.VID }}
           vkey: ${{ secrets.VKEY }}
           source_base_path_1: "com/:app/src/main/java/com/"
-          source_base_path_2: "WEB-INF:app/src/main/webapp/WEB-INF"
+          source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
           language: java
           prComment: true
-          cwe: '89,117'
+          createPR: true
+          cwe: '89,80'
           DEBUG: true
           fixType: batch
