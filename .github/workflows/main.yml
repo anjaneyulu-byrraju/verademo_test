@@ -3,9 +3,6 @@ on:
    push:
     branches:
       - Test1
-   pull_request:
-    branches:
-      - Test2
 
 jobs:
   build:
