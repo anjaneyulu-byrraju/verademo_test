@@ -1,5 +1,10 @@
 name: verademo
 
+on:
+   push:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
