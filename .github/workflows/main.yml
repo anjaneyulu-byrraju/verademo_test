@@ -2,7 +2,7 @@ name: verademo
 on:
    push:
     branches:
-      - Test1
+      - Test2
    pull_request:
     branches:
       - Test1
