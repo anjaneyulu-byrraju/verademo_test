@@ -1,5 +1,13 @@
 name: verademo
 
+on:
+   push:
+    branches:
+      - main
+   pull_request:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -76,5 +84,6 @@ jobs:
           language: java
           prComment: true
           createPR: true
+          cwe: '89,80'
           DEBUG: true
-          fixType: single
+          fixType: batch
