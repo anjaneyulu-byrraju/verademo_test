@@ -3,7 +3,7 @@ name: verademo
 on:
    push:
     branches:
-      - main
+      - Test1
 
 jobs:
   build:
