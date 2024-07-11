@@ -79,7 +79,8 @@ jobs:
           inputFile: results.json
           vid: ${{ secrets.VID }}
           vkey: ${{ secrets.VKEY }}
-          language: java
+          source_base_path_1: "com/:app/src/main/java/com/"
+          source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
           cwe: '89,117'
           prComment: true
           fixType: batch
